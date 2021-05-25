@@ -40,7 +40,7 @@ class FormAddBudgetFragment : Fragment() {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -129,4 +129,5 @@ class FormAddBudgetFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+    */
 }

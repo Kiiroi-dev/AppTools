@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_finance" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.apptools.ui.slideshow.SlideshowFragment"
+        android:id="@+id/nav_formAddBudget"
+        android:name="com.example.apptools.ui.finance.ui.login.FormAddBudgetFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_form_add_budget" />
 </navigation>
