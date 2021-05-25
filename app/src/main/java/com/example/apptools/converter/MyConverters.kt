@@ -6,17 +6,21 @@ import java.time.LocalDate
 
 class MyConverters {
 
+    companion object {
+        @TypeConverter
+       @JvmStatic
+        fun toString(value: LocalDate): String {
+            return value.toString()
+        }
 
-    @TypeConverter
-     fun DateToString(value: LocalDate?): String {
-        return value.toString()
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        @TypeConverter
+        @JvmStatic
+        fun fromLocalDate(value: String): LocalDate {
+            return LocalDate.parse(value)
+        }
+
+
     }
-
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun StringToDate(value: String?): LocalDate? {
-        return LocalDate.parse(value)
-    }
-
-
 }

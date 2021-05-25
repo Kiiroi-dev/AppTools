@@ -21,8 +21,6 @@ import com.example.apptools.databinding.FragmentFormAddBudgetBinding
 import com.example.apptools.R
 
 class FormAddBudgetFragment : Fragment() {
-
-    private lateinit var loginViewModel: LoginViewModel
     private var _binding: FragmentFormAddBudgetBinding? = null
 
     // This property is only valid between onCreateView and
@@ -33,7 +31,7 @@ class FormAddBudgetFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentFormAddBudgetBinding.inflate(inflater, container, false)
         return binding.root

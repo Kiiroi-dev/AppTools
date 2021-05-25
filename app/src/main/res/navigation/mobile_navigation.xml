@@ -15,11 +15,18 @@
         android:id="@+id/nav_finance"
         android:name="com.example.apptools.ui.finance.FinanceFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_finance" />
+        tools:layout="@layout/fragment_finance" >
+        <action
+            android:id="@+id/action_nav_finance_to_nav_formAddBudget"
+            app:destination="@id/nav_formAddBudget" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_formAddBudget"
         android:name="com.example.apptools.ui.finance.ui.login.FormAddBudgetFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_form_add_budget" />
+        tools:layout="@layout/fragment_form_add_budget" >
+        <action
+            android:id="@+id/action_nav_formAddBudget_to_nav_finance"
+            app:destination="@id/nav_finance" />
+    </fragment>
 </navigation>
