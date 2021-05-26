@@ -8,6 +8,6 @@ interface EntityBudgetDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addBudget(budget: EntityBudget)
 
-    @Query("SELECT * FROM `budget-table` ORDER BY uid ASC")
+    @Query("SELECT * FROM `budget-table`")
     fun readAllData(): LiveData<List<EntityBudget>>
 }

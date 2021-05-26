@@ -1,19 +1,15 @@
 package com.example.apptools.ui.finance
 
-import android.graphics.drawable.Drawable
-import android.media.Image
 import android.os.Bundle
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.apptools.R
 import com.example.apptools.databinding.FragmentFinanceBinding
+import com.example.apptools.ui.finance.ui.FinanceViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class FinanceFragment : Fragment(R.layout.fragment_finance) {
 
@@ -23,15 +19,18 @@ class FinanceFragment : Fragment(R.layout.fragment_finance) {
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val root: View = binding.root
-        return root
+        val view = inflater.inflate(R.layout.fragment_finance, container, false)
+        var btnAddBudget: FloatingActionButton? = view?.findViewById(R.id.floatingActionButton)
+        btnAddBudget?.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_finance_to_nav_formAddBudget)
+        }
+        return view
 
     }
 

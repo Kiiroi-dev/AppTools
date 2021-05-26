@@ -2,7 +2,7 @@ package com.example.apptools.ui.finance.data
 
 import android.content.Context
 import androidx.room.*
-import com.example.apptools.converter.MyConverters
+import com.example.apptools.Tools.MyConverters
 
 @Database(entities = arrayOf(EntityBudget::class), version = 1, exportSchema = false)
 @TypeConverters(MyConverters::class)
