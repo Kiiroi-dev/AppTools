@@ -10,4 +10,7 @@ interface EntityBudgetDao {
 
     @Query("SELECT * FROM `budget-table`")
     fun readAllData(): LiveData<List<EntityBudget>>
+
+    @Delete
+    suspend fun deleteBudget(entityBudget: EntityBudget)
 }

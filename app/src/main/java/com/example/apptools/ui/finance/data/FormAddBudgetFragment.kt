@@ -51,58 +51,68 @@ class FormAddBudgetFragment : Fragment() {
             LocalDateTime.ofInstant(dateCreated.toInstant(), dateCreated.getTimeZone().toZoneId())
                 .toLocalDate()
         val dateCreatedStr = dateCreatedOK.toString()
+        val dueDateOK: Editable? = dueDate?.text
+        val dueDateStr: String = dueDateOK.toString()
+        val df: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+
+        val fieldStr: String = field?.text.toString()
+        val currentResourcesStr: String = currentResources?.text.toString()
+
+        val goalAmountStr: String? = goalAmount?.text.toString()
+
+        val titleBudgetStr: String = titleBudget?.text.toString()
 
         @RequiresApi(Build.VERSION_CODES.O)
         fun inputCheck(
-            titleBudgetOK: String,
-            goalAmountOK: String?,
-            fieldOK: String,
-            dateCreatedStr: String
+            titleBudgetStr: String?,
+            goalAmountStr: String?,
+            fieldStr: String?,
+            dueDateStr: String?,
+            currentResourcesStr:String?
         ): Boolean {
-            return !(TextUtils.isEmpty(titleBudgetOK) && TextUtils.isEmpty(dateCreatedStr) && TextUtils.isEmpty(
-                goalAmountOK
-            ) && TextUtils.isEmpty(fieldOK))
+            var out = false
+            if (titleBudgetStr == "" || goalAmountStr =="" || fieldStr=="" || dueDateStr=="" || currentResourcesStr =="" ){
+                Toast.makeText(requireContext(),"Please complete all the informations",Toast.LENGTH_LONG)
+                return out
+            }
+
+            return !(TextUtils.isEmpty(titleBudgetStr) && TextUtils.isEmpty(dateCreatedStr) && TextUtils.isEmpty(
+                goalAmountStr
+            ) && TextUtils.isEmpty(fieldStr) && TextUtils.isEmpty(dueDateStr))
         }
-        /*if (inputCheck(titleBudgetOK, goalAmountStr, fieldStr, dateCreatedStr)) {
+        /*if (inputCheck(titleBudgetStr, goalAmountStr, fieldStr, dateCreatedStr)) {
             btnValidateBudget?.isEnabled = true
         }*/
 
 
         @RequiresApi(Build.VERSION_CODES.O)
          fun insertDatatoDatabase() {
-            val dueDateOK: Editable? = dueDate?.text
-            val dueDateStr = dueDateOK.toString()
-            val df: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
 
-            val dueDateLocalDate: LocalDate = LocalDate.parse(dueDateStr, df)
-            val fieldStr: String = field?.text.toString()
-            val currentResourcesStr: String = goalAmount?.text.toString()
-            val currentResourcesDouble: Double = currentResourcesStr.toDouble()
-            val goalAmountStr: String? = goalAmount?.text.toString()
-            val goalAmountDouble: Double? = goalAmountStr?.toDouble()
-            val titleBudgetOK: String = titleBudget?.text.toString()
 
-            if (inputCheck(titleBudgetOK, goalAmountStr, fieldStr, dateCreatedStr)) {
+            if (inputCheck(titleBudgetStr, goalAmountStr, fieldStr,dueDateStr,currentResourcesStr)) {
+                val dueDateLocalDate: LocalDate? = LocalDate.parse(dueDateStr, df)
+                val currentResourcesDouble: Double = currentResourcesStr.toDouble()
+                val goalAmountDouble: Double? = goalAmountStr?.toDouble()
                 val budget = EntityBudget(
                     0,
-                    titleBudgetOK,
+                    titleBudgetStr,
                     dateCreatedOK,
                     dueDateLocalDate,
                     currentResourcesDouble,
                     goalAmountDouble,
                     fieldStr
                 )
-                mFormAddBudgetViewModel.addBudget(budget)
+                //mFormAddBudgetViewModel.addBudget(budget)
                 Toast.makeText(
                     requireContext(),
-                    "Budget ajouté mon bro, bien vu caaaaaaaaa!",
+                    "Budget ajouté mon bro, bien vu caaaaaaaaa! :D",
                     Toast.LENGTH_LONG
                 ).show()
                 findNavController().navigate(R.id.action_nav_formAddBudget_to_nav_finance)
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "Rempli tous les champs obligatoires!",
+                    "Remplissez tous les champs obligatoires!",
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -111,6 +121,8 @@ class FormAddBudgetFragment : Fragment() {
         val btnValidateBudget: Button? = view?.findViewById(R.id.btn_validate_budget)
         btnValidateBudget?.setOnClickListener {
             insertDatatoDatabase()
+
+
         }
 
 

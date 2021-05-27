@@ -11,5 +11,8 @@ class BudgetRepository(private val entityBudgetDao: EntityBudgetDao) {
     suspend fun addBudget(budget: EntityBudget){
         entityBudgetDao.addBudget(budget)
     }
+    suspend fun deleteBudget(entityBudget: EntityBudget) {
+        entityBudgetDao.deleteBudget(entityBudget)
+    }
 
 }
