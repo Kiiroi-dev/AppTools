@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -13,13 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apptools.R
 import com.example.apptools.Tools.RecyclerAdapter
-import com.example.apptools.databinding.FragmentFinanceBinding
 import com.example.apptools.ui.finance.data.AppDatabase
 import com.example.apptools.ui.finance.data.EntityBudget
 import com.example.apptools.ui.finance.data.EntityBudgetDao
 import com.example.apptools.ui.finance.data.ModelCardView
 import com.example.apptools.ui.finance.ui.FinanceViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.w3c.dom.Text
 
 class FinanceFragment : Fragment(R.layout.fragment_finance) {
 
@@ -36,6 +39,10 @@ class FinanceFragment : Fragment(R.layout.fragment_finance) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val view = inflater.inflate(R.layout.fragment_finance, container, false)
+
+
+
         val model: FinanceViewModel by viewModels()
         val arrayList = ArrayList<ModelCardView>()
         val entityBudgetDao: EntityBudgetDao = AppDatabase.getDatabase(requireContext()).EntityBudgetDao()
@@ -66,14 +73,27 @@ class FinanceFragment : Fragment(R.layout.fragment_finance) {
 
 
 
-        val view = inflater.inflate(R.layout.fragment_finance, container, false)
         var btnAddBudget: FloatingActionButton? = view?.findViewById(R.id.floatingActionButton)
         btnAddBudget?.setOnClickListener {
             findNavController().navigate(R.id.action_nav_finance_to_nav_formAddBudget)
+
         }
 
-        return view
 
+
+        var textViewTest : TextView? = view?.findViewById(R.id.textViewTest)
+        var btnTest: Button? = view?.findViewById(R.id.btnTest)
+        var i=0
+        btnTest?.setOnClickListener {
+
+            textViewTest?.text = entityBudgetDao.loadTitleBudget().value?.get(i)
+            i++
+
+        }
+
+
+
+        return view
     }
 
 
