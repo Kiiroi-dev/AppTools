@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,6 @@ import androidx.navigation.fragment.findNavController
 
 
 import com.example.apptools.R
-import com.example.apptools.ui.finance.ui.FinanceViewModel
 import com.example.apptools.ui.finance.ui.FormAddBudgetViewModel
 
 import java.time.LocalDate
@@ -31,7 +29,7 @@ class FormAddBudgetFragment : Fragment() {
     private lateinit var mFormAddBudgetViewModel: FormAddBudgetViewModel
 
 
-    @RequiresApi(Build.VERSION_CODES.N)
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,21 +44,16 @@ class FormAddBudgetFragment : Fragment() {
         val currentResources: EditText? = view?.findViewById(R.id.currentRessources)
         val field: EditText? = view?.findViewById(R.id.field)
         val dueDate: EditText? = view?.findViewById(R.id.dueDate)
-        val dateCreated: Calendar = java.util.Calendar.getInstance()
+        val dateCreated: Calendar = Calendar.getInstance()
         val dateCreatedOK: LocalDate =
             LocalDateTime.ofInstant(dateCreated.toInstant(), dateCreated.getTimeZone().toZoneId())
                 .toLocalDate()
         val dateCreatedStr = dateCreatedOK.toString()
         val dueDateOK: Editable? = dueDate?.text
-        val dueDateStr: String = dueDateOK.toString()
+
         val df: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
 
-        val fieldStr: String = field?.text.toString()
-        val currentResourcesStr: String = currentResources?.text.toString()
 
-        val goalAmountStr: String? = goalAmount?.text.toString()
-
-        val titleBudgetStr: String = titleBudget?.text.toString()
 
         @RequiresApi(Build.VERSION_CODES.O)
         fun inputCheck(
@@ -70,26 +63,46 @@ class FormAddBudgetFragment : Fragment() {
             dueDateStr: String?,
             currentResourcesStr:String?
         ): Boolean {
-            var out = false
             if (titleBudgetStr == "" || goalAmountStr =="" || fieldStr=="" || dueDateStr=="" || currentResourcesStr =="" ){
-                Toast.makeText(requireContext(),"Please complete all the informations",Toast.LENGTH_LONG)
-                return out
+                Toast.makeText(requireContext(),"Please complete all the information",Toast.LENGTH_LONG).show()
+                return false
             }
 
-            return !(TextUtils.isEmpty(titleBudgetStr) && TextUtils.isEmpty(dateCreatedStr) && TextUtils.isEmpty(
-                goalAmountStr
-            ) && TextUtils.isEmpty(fieldStr) && TextUtils.isEmpty(dueDateStr))
+            return true
         }
-        /*if (inputCheck(titleBudgetStr, goalAmountStr, fieldStr, dateCreatedStr)) {
-            btnValidateBudget?.isEnabled = true
-        }*/
+        fun inputCheckInfos(
+            titleBudgetStr: String?,
+            goalAmountStr: String?,
+            fieldStr: String?,
+            dueDateStr: String?,
+            currentResourcesStr: String?
+        ): List<String?> {
+            if (titleBudgetStr == "" || goalAmountStr == "" || fieldStr == "" || dueDateStr == "" || currentResourcesStr == "") {
+                Toast.makeText(
+                    requireContext(),
+                    "Please complete all the information",
+                    Toast.LENGTH_LONG
+                ).show()
+
+            }else{}
+
+            return listOf(titleBudgetStr, goalAmountStr, fieldStr, dueDateStr, currentResourcesStr)
+        }
 
 
         @RequiresApi(Build.VERSION_CODES.O)
          fun insertDatatoDatabase() {
+            //Faire afficher le projet test dans la db via un bouton et Toast
+            val fieldStr: String = field?.text.toString()
+            val currentResourcesStr: String = currentResources?.text.toString()
 
+            val goalAmountStr: String? = goalAmount?.text.toString()
 
-            if (inputCheck(titleBudgetStr, goalAmountStr, fieldStr,dueDateStr,currentResourcesStr)) {
+            val titleBudgetStr: String = titleBudget?.text.toString()
+            val dueDateStr: String = dueDateOK.toString()
+
+            if (inputCheck(titleBudgetStr, goalAmountStr, fieldStr,dueDateStr,currentResourcesStr))
+            {
                 val dueDateLocalDate: LocalDate? = LocalDate.parse(dueDateStr, df)
                 val currentResourcesDouble: Double = currentResourcesStr.toDouble()
                 val goalAmountDouble: Double? = goalAmountStr?.toDouble()
@@ -102,7 +115,7 @@ class FormAddBudgetFragment : Fragment() {
                     goalAmountDouble,
                     fieldStr
                 )
-                //mFormAddBudgetViewModel.addBudget(budget)
+                mFormAddBudgetViewModel.addBudget(budget)
                 Toast.makeText(
                     requireContext(),
                     "Budget ajouté mon bro, bien vu caaaaaaaaa! :D",
@@ -110,20 +123,24 @@ class FormAddBudgetFragment : Fragment() {
                 ).show()
                 findNavController().navigate(R.id.action_nav_formAddBudget_to_nav_finance)
             } else {
+
                 Toast.makeText(
-                    requireContext(),
-                    "Remplissez tous les champs obligatoires!",
+                    requireContext(),inputCheckInfos(titleBudgetStr, goalAmountStr, fieldStr,dueDateStr,currentResourcesStr).toString()
+                    ,
                     Toast.LENGTH_LONG
                 ).show()
             }
 
         }
+
         val btnValidateBudget: Button? = view?.findViewById(R.id.btn_validate_budget)
+
         btnValidateBudget?.setOnClickListener {
             insertDatatoDatabase()
 
 
         }
+
 
 
 

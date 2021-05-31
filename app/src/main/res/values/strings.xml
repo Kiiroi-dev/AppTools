@@ -12,5 +12,5 @@
     <string name="menu_slideshow">Slideshow</string>
     <!-- Strings related to FormAddBudget -->
 <string name="btn_send_form">Validate</string>
-
+<string name="dueDate">28–02–1997</string>
 </resources>

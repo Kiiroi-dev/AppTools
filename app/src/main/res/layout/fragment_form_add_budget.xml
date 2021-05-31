@@ -65,7 +65,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
-        android:hint="28/02/1997"
+        android:hint="@string/dueDate"
         android:inputType="date"
         android:minHeight="48dp"
         android:selectAllOnFocus="true"

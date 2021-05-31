@@ -15,13 +15,13 @@ class FinanceViewModel(application: Application) : AndroidViewModel(application)
     private val _text = MutableLiveData<String>().apply {
         value = "This is finance Fragment"
     }
-    //private val readAllData : LiveData<List<EntityBudget>>
+    val readAllData : LiveData<List<EntityBudget>>
     private val repository : BudgetRepository
     val text: LiveData<String> = _text
     init {
         val budgetDao = AppDatabase.getDatabase(application).EntityBudgetDao()
         repository = BudgetRepository(budgetDao)
-        //readAllData = repository.readAllData
+        readAllData = repository.readAllData
     }
 
 
@@ -30,4 +30,6 @@ class FinanceViewModel(application: Application) : AndroidViewModel(application)
             repository.addBudget(budget)
         }
     }
+
+    val currentBudget: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 }

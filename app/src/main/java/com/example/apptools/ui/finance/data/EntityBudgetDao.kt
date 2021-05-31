@@ -13,4 +13,7 @@ interface EntityBudgetDao {
 
     @Delete
     suspend fun deleteBudget(entityBudget: EntityBudget)
+
+    @Query("SELECT title FROM `budget-table`")
+    fun loadTitleBudget():LiveData<List<String>>
 }
