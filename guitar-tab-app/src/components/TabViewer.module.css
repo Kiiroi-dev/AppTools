@@ -1,0 +1,42 @@
+.viewer {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff; /* AlphaTab renders on white */
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.playBtn {
+  background: var(--success);
+  color: #fff;
+  padding: 6px 20px;
+  font-weight: 600;
+}
+
+.stopBtn {
+  background: var(--surface);
+  color: var(--text);
+  padding: 6px 12px;
+}
+
+.controlsRight { margin-left: auto; }
+.hint { font-size: 11px; color: var(--text2); }
+
+.tabContainer {
+  flex: 1;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.alphaTab {
+  width: 100%;
+}

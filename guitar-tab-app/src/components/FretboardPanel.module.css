@@ -1,0 +1,192 @@
+.panel {
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 12px;
+  gap: 10px;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.tab {
+  flex: 1;
+  background: transparent;
+  color: var(--text2);
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+.tab.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.scaleSelect {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.scaleBtn {
+  background: var(--surface2);
+  color: var(--text2);
+  text-align: left;
+  padding: 5px 10px;
+  font-size: 11px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+.scaleBtn.active {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+/* Fretboard */
+.fretboardWrap {
+  flex: 1;
+  overflow: auto;
+}
+
+.fretboard {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 180px;
+}
+
+.markers {
+  display: flex;
+  padding-left: 24px;
+  margin-bottom: 4px;
+}
+
+.markerCell {
+  flex: 1;
+  min-width: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12px;
+}
+
+.marker {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.double {
+  box-shadow: 4px 0 0 var(--border), -4px 0 0 var(--border);
+}
+
+.string {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 28px;
+}
+
+.openString {
+  width: 24px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text2);
+  flex-shrink: 0;
+}
+
+.fretCell {
+  flex: 1;
+  min-width: 28px;
+  height: 28px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--border);
+}
+.fretCell:first-of-type { border-left: 2px solid var(--text2); }
+
+.stringLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--text2);
+  opacity: 0.35;
+}
+
+.dot {
+  position: relative;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 800;
+  color: #fff;
+  cursor: default;
+}
+
+.root {
+  width: 22px;
+  height: 22px;
+  font-size: 9px;
+}
+
+.fretNumbers {
+  display: flex;
+  padding-left: 24px;
+  margin-top: 4px;
+}
+
+.fretNum {
+  flex: 1;
+  min-width: 28px;
+  text-align: center;
+  font-size: 9px;
+  color: var(--text2);
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--text2);
+}
+
+.legendDotRoot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.legendDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent2);
+  opacity: 0.7;
+}

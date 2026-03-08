@@ -1,0 +1,102 @@
+.panel {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.section {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-child { border-bottom: none; }
+
+.sectionTitle {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text2);
+  margin-bottom: 10px;
+}
+
+/* Key */
+.keyBadge {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.keyRoot {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.keyMode {
+  font-size: 14px;
+  color: var(--text2);
+}
+
+.progression { margin-top: 6px; }
+.label { font-size: 10px; color: var(--text2); display: block; margin-bottom: 4px; }
+.prog {
+  font-family: monospace;
+  font-size: 13px;
+  color: var(--accent2);
+}
+
+/* Chords */
+.chords { display: flex; gap: 8px; flex-wrap: wrap; }
+.chord { text-align: center; }
+.chordName { font-size: 13px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+.chordFrets { display: flex; gap: 3px; }
+.chordString { width: 18px; text-align: center; font-size: 11px; }
+.muted, .open { color: var(--text2); }
+.fret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* Scales */
+.scaleTabs { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+.scaleTab {
+  background: var(--surface2);
+  color: var(--text2);
+  text-align: left;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+.scaleTab.active {
+  border-color: var(--accent);
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface2));
+}
+
+.scaleNotes { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+.note {
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.scaleHint {
+  font-size: 11px;
+  color: var(--text2);
+  line-height: 1.5;
+}
