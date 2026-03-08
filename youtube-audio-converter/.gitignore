@@ -1,0 +1,9 @@
+output/*.mp3
+output/*.flac
+output/*.wav
+output/*.aac
+output/*.ogg
+output/*.m4a
+__pycache__/
+*.pyc
+.pytest_cache/
