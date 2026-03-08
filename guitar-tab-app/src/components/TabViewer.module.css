@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: #fff; /* AlphaTab renders on white */
+  background: #fff;
 }
 
 .controls {
@@ -20,6 +20,7 @@
   color: #fff;
   padding: 6px 20px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .stopBtn {
@@ -28,13 +29,56 @@
   padding: 6px 12px;
 }
 
+/* Time / seek bar */
+.timeInfo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 8px;
+}
+
+.time {
+  font-size: 11px;
+  color: var(--text2);
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+.seekBar {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.seekFill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.1s linear;
+}
+
 .controlsRight { margin-left: auto; }
-.hint { font-size: 11px; color: var(--text2); }
+
+.badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  background: color-mix(in srgb, var(--accent2) 20%, var(--surface2));
+  border: 1px solid var(--accent2);
+  border-radius: 10px;
+  color: var(--accent2);
+  white-space: nowrap;
+}
 
 .tabContainer {
   flex: 1;
   overflow-y: auto;
   background: #fff;
+  padding: 16px;
 }
 
 .alphaTab {
