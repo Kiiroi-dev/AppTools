@@ -116,8 +116,8 @@ def download_and_convert(
     else:
         base_name = sanitize_filename(video_title)
         if start_sec is not None or end_sec is not None:
-            s = start if start else "0:00"
-            e = end if end else "end"
+            s = (start if start else "0.00").replace(":", ".")
+            e = (end if end else "end").replace(":", ".")
             base_name += f" [{s}-{e}]"
 
     output_path = output_dir / f"{base_name}.{output_format}"
