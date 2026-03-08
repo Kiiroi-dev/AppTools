@@ -23,12 +23,19 @@
   margin-bottom: 10px;
 }
 
-/* Key */
+/* Key badge — clickable to edit */
 .keyBadge {
   display: flex;
   align-items: baseline;
   gap: 8px;
   margin-bottom: 8px;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.keyBadge:hover {
+  background: var(--surface2);
 }
 .keyRoot {
   font-size: 36px;
@@ -40,23 +47,101 @@
   font-size: 14px;
   color: var(--text2);
 }
+.editIcon {
+  font-size: 14px;
+  color: var(--text2);
+  margin-left: auto;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.keyBadge:hover .editIcon { opacity: 1; }
 
+/* Key editor */
+.keyEditor {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.select {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 13px;
+  font-family: inherit;
+}
+.applyBtn {
+  background: var(--accent);
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+.cancelBtn {
+  background: var(--surface2);
+  color: var(--text2);
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+/* Progression — editable input */
 .progression { margin-top: 6px; }
 .label { font-size: 10px; color: var(--text2); display: block; margin-bottom: 4px; }
-.prog {
+.progInput {
   font-family: monospace;
   font-size: 13px;
   color: var(--accent2);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 5px 8px;
+  width: 100%;
+}
+.progInput:focus {
+  outline: none;
+  border-color: var(--accent);
 }
 
 /* Chords */
-.chords { display: flex; gap: 8px; flex-wrap: wrap; }
-.chord { text-align: center; }
-.chordName { font-size: 13px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
-.chordFrets { display: flex; gap: 3px; }
-.chordString { width: 18px; text-align: center; font-size: 11px; }
-.muted, .open { color: var(--text2); }
-.fret {
+.chords { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+.chord {
+  text-align: center;
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 8px 6px 6px;
+  position: relative;
+}
+.chordHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+.chordName { font-size: 13px; font-weight: 700; color: var(--text); }
+.removeChord {
+  background: none;
+  color: var(--text2);
+  font-size: 14px;
+  padding: 0 2px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.chord:hover .removeChord { opacity: 1; }
+.removeChord:hover { color: var(--danger); }
+
+.chordGrid { display: flex; gap: 3px; }
+.chordString {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 18px;
+  gap: 2px;
+}
+.chordStringLabel { font-size: 8px; color: var(--text2); }
+.muted, .open { color: var(--text2); font-size: 11px; }
+.fretDot {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -67,6 +152,49 @@
   color: #fff;
   font-size: 10px;
   font-weight: 700;
+}
+.noShape { font-size: 9px; color: var(--text2); margin-top: 4px; }
+
+/* Add chord */
+.addChordBtn {
+  background: var(--surface2);
+  color: var(--accent);
+  border: 1px dashed var(--border);
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 6px;
+  width: 100%;
+}
+.addChordBtn:hover { border-color: var(--accent); }
+
+.chordAdder {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.chordInput {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-family: inherit;
+  width: 100%;
+}
+.chordInput:focus { outline: none; }
+.chordSuggestions { display: flex; flex-wrap: wrap; gap: 4px; }
+.chordSuggestion {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+  font-size: 11px;
+  border-radius: 4px;
+}
+.chordSuggestion:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface2));
 }
 
 /* Scales */
@@ -86,17 +214,11 @@
   background: color-mix(in srgb, var(--accent) 12%, var(--surface2));
 }
 
-.scaleNotes { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+.scaleNotes { display: flex; gap: 5px; flex-wrap: wrap; }
 .note {
   padding: 3px 8px;
   border-radius: 4px;
   border: 1px solid;
   font-size: 12px;
   font-weight: 700;
-}
-
-.scaleHint {
-  font-size: 11px;
-  color: var(--text2);
-  line-height: 1.5;
 }

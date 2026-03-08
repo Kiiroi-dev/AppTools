@@ -5,170 +5,164 @@
   flex-direction: column;
   overflow: hidden;
   padding: 12px;
-  gap: 10px;
+  gap: 8px;
 }
 
-.tabs {
-  display: flex;
-  gap: 4px;
-  background: var(--surface2);
-  border-radius: 8px;
-  padding: 3px;
-}
-
-.tab {
-  flex: 1;
-  background: transparent;
+.title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: var(--text2);
-  padding: 5px;
-  font-size: 12px;
-  border-radius: 6px;
-}
-.tab.active {
-  background: var(--accent);
-  color: #fff;
 }
 
-.scaleSelect {
+/* Scale selector */
+.scaleSelector {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
 
 .scaleBtn {
+  display: flex;
+  flex-direction: column;
   background: var(--surface2);
   color: var(--text2);
   text-align: left;
-  padding: 5px 10px;
-  font-size: 11px;
-  border-radius: 5px;
+  padding: 6px 10px;
+  border-radius: 6px;
   border: 1px solid transparent;
 }
 .scaleBtn.active {
   border-color: var(--accent);
   color: var(--text);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface2));
 }
+.scaleName { font-size: 11px; font-weight: 600; }
+.scalePreview { font-size: 9px; color: var(--text2); margin-top: 1px; }
 
-/* Fretboard */
-.fretboardWrap {
+/* Vertical fretboard */
+.fretboardScroll {
   flex: 1;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .fretboard {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  min-width: 180px;
 }
 
-.markers {
+/* String labels row */
+.stringLabelsRow {
   display: flex;
-  padding-left: 24px;
-  margin-bottom: 4px;
+  align-items: center;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--text2);
 }
-
-.markerCell {
+.stringLabel {
   flex: 1;
-  min-width: 28px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 12px;
-}
-
-.marker {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--border);
-}
-
-.double {
-  box-shadow: 4px 0 0 var(--border), -4px 0 0 var(--border);
-}
-
-.string {
-  display: flex;
-  align-items: center;
-  position: relative;
-  height: 28px;
-}
-
-.openString {
-  width: 24px;
   text-align: center;
   font-size: 10px;
   font-weight: 700;
   color: var(--text2);
-  flex-shrink: 0;
 }
 
-.fretCell {
-  flex: 1;
-  min-width: 28px;
-  height: 28px;
+/* Fret row */
+.fretRow {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  border-bottom: 1px solid var(--border);
   position: relative;
+}
+.fretRow.nutRow {
+  height: 28px;
+  background: color-mix(in srgb, var(--text2) 5%, transparent);
+}
+
+.fretLabel {
+  width: 28px;
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 10px;
+  color: var(--text2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+.markerLabel { color: var(--accent2); font-weight: 700; }
+.markerDot { font-size: 6px; color: var(--accent2); }
+
+/* Cell */
+.cell {
+  flex: 1;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid var(--border);
+  position: relative;
 }
-.fretCell:first-of-type { border-left: 2px solid var(--text2); }
 
-.stringLine {
+/* String wire */
+.stringWire {
   position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
   background: var(--text2);
-  opacity: 0.35;
+  opacity: 0.25;
+  transform: translateX(-0.5px);
 }
 
-.dot {
+/* Note dot */
+.noteDot {
   position: relative;
   z-index: 1;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 8px;
+  cursor: default;
+  transition: transform 0.1s;
+}
+.noteDot:hover { transform: scale(1.15); }
+
+.rootDot {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #fff;
+}
+
+.noteName {
+  font-size: 9px;
   font-weight: 800;
   color: #fff;
-  cursor: default;
+  line-height: 1;
 }
 
-.root {
-  width: 22px;
-  height: 22px;
-  font-size: 9px;
+.rootLabel {
+  font-size: 6px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+  line-height: 1;
 }
 
-.fretNumbers {
-  display: flex;
-  padding-left: 24px;
-  margin-top: 4px;
-}
-
-.fretNum {
-  flex: 1;
-  min-width: 28px;
-  text-align: center;
-  font-size: 9px;
-  color: var(--text2);
-}
-
+/* Legend */
 .legend {
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding-top: 4px;
-  border-top: 1px solid var(--border);
 }
 
-.legendItem {
+.legendRow {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -176,17 +170,16 @@
   color: var(--text2);
 }
 
-.legendDotRoot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
 .legendDot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--accent2);
-  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.scaleInfo {
+  font-size: 10px;
+  color: var(--accent2);
+  font-family: monospace;
+  padding: 4px 0;
 }
